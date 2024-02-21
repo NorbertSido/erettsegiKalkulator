@@ -1,0 +1,35 @@
+#div {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem 0;
+}
+
+h1 {
+    margin-bottom: 2rem;
+}
+
+button {
+    background-color: lightgray;
+    color: #000;
+    font-size: 2rem;
+    border: 1px solid black;
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+
+    text-decoration: none;
+}
+
+button:hover {
+    background-color: lightskyblue;
+}
+
+/* ----- Themes ----- */
+/* .reactiveTheme {
+    background-color:bisque;
+}
+
+.sablonTheme {
+    background-color: antiquewhite;
+} */

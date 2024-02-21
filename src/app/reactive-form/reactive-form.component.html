@@ -1,1 +1,66 @@
-<p>reactive-form works!</p>
+<h1>Emelt szintű érettségi kalkulátor</h1>
+<p>(Model űrlap)</p>
+
+<form [formGroup]="erettsegiForm" (ngSubmit)="submitCalc()" novalidate>
+    <h2>Írásbelin szerzett pontok megadása</h2>
+        <div id="inputBox">
+            <label>Szövegszerkesztés, perezentáció, grafika, weblapkészítés:</label><br>
+            <input type="number" name="textEdit" placeholder="Elért pontszám megadása" formControlName="textEdit">
+                <div id="errorDiv" *ngIf="!textEdit?.valid && (textEdit?.touched || textEdit?.dirty)">
+                    <div *ngIf="textEdit?.errors?.['required']">Szövegszerkesztés pontszám megadása kötelező!</div>
+                    <div *ngIf="textEdit?.errors?.['min']">A minimum pontszám nem lehet kevesebb 0-nál!</div>
+                    <div *ngIf="textEdit?.errors?.['max']">A maximális pontszám nem lehet több 30-nál!</div>
+                </div>
+        </div>
+        <div id="inputBox">
+            <label>Táblázatkezelés:</label><br>
+            <input type="number" name="tableManagement" placeholder="Elért pontszám megadása" formControlName="tableManagement">
+                <div id="errorDiv" *ngIf="!tableManagement?.valid && (tableManagement?.touched || tableManagement?.dirty)">
+                    <div *ngIf="tableManagement?.errors?.['required']">Táblázatkezelés pontszám megadása kötelező!</div>
+                    <div *ngIf="tableManagement?.errors?.['min']">A minimum pontszám nem lehet kevesebb 0-nál!</div>
+                    <div *ngIf="tableManagement?.errors?.['max']">A maximális pontszám nem lehet több 15-nél!</div>
+                </div>
+        </div>   
+        <div id="inputBox">
+            <label>Adatbázis-kezelés:</label><br>
+            <input type="number" name="dataBaseManagement" placeholder="Elért pontszám megadása" formControlName="dataBaseManagement">
+                <div id="errorDiv" *ngIf="!dataBaseManagement?.valid && (dataBaseManagement?.touched || dataBaseManagement?.dirty)">
+                    <div *ngIf="dataBaseManagement?.errors?.['required']">Adatbázis-kezelés pontszám megadása kötelező!</div>
+                    <div *ngIf="dataBaseManagement?.errors?.['min']">A minimum pontszám nem lehet kevesebb 0-nál!</div>
+                    <div *ngIf="dataBaseManagement?.errors?.['max']">A maximális pontszám nem lehet több 30-nál!</div>
+                </div>
+        </div>
+        <div id="inputBox">
+            <label>Algoritmizálás:</label><br>
+            <input type="number" name="algoritm" placeholder="Elért pontszám megadása" formControlName="algoritm">
+                <div id="errorDiv" *ngIf="!algoritm?.valid && (algoritm?.touched || algoritm?.dirty)">
+                    <div *ngIf="algoritm?.errors?.['required']">Algoritmizálás pontszám megadása kötelező!</div>
+                    <div *ngIf="algoritm?.errors?.['min']">A minimum pontszám nem lehet kevesebb 0-nál!</div>
+                    <div *ngIf="algoritm?.errors?.['max']">A maximális pontszám nem lehet több 45-nél!</div>
+                </div>
+        </div>
+    <h2>Szóbelin szerzett pontok megadása</h2>
+        <div id="inputBox">
+            <label>Szóbeli:</label><br>
+            <input type="number" name="oralPoint" placeholder="Elért pontszám megadása" formControlName="oralPoint">
+                <div id="errorDiv" *ngIf="!oralPoint?.valid && (oralPoint?.touched || oralPoint?.dirty)">
+                    <div *ngIf="oralPoint?.errors?.['required']">Szóbeli pontszám megadása kötelező!</div>
+                    <div *ngIf="oralPoint?.errors?.['min']">A minimum pontszám nem lehet kevesebb 0-nál!</div>
+                    <div *ngIf="oralPoint?.errors?.['max']">A maximális pontszám nem lehet több 30-nál!</div>
+                </div>
+        </div>    
+    <button type="submit" id="submitBtn" [disabled]="!erettsegiForm.valid">Eredmény mutatása</button>
+    <button type="button" id="resetBtn" (click)="resetBtn()">Törlés</button>
+</form>
+
+<div id="resultDiv">
+    <h2>Eredmény</h2>
+    <div id="resultBox">
+        <label>Elért százalék:</label>
+        <input type="text" name="percent" id="percent" [value]="percent" disabled>
+   </div> 
+    <div id="resultBox">
+        <label>Érdemjegy:</label>
+        <input type="text" name="grade" id="grade" [value]="grade" disabled>
+    </div>
+</div>  
