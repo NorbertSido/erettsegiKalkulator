@@ -1,1 +1,66 @@
-<p>template-form works!</p>
+<h1>Emelt szintű érettségi kalkulátor</h1>
+<p>(Sablon űrlap)</p>
+
+<form #erettsegiForm="ngForm" (ngSubmit)="submitCalc(erettsegiForm)" novalidate>
+    <h2>Írásbelin szerzett pontok megadása</h2>
+    <div id="inputBox">
+        <label>Szövegszerkesztés, perezentáció, grafika, weblapkészítés:</label><br>
+        <input required min="0" max="30" type="number" name="textEdit" id="textEdit" placeholder="Elért pontszám megadása" #textEdit="ngModel" ngModel><br>
+            <div id="errorDiv" *ngIf="!textEdit.valid && (textEdit.dirty || textEdit.touched)">
+                <span *ngIf="textEdit.errors?.['required']">Szövegszerkesztésen elért pontszám megadása kötelező!</span>
+                <span *ngIf="textEdit.errors?.['min']">Szövegszerkesztésen elérthető minimális pontszám 0!</span>
+                <span *ngIf="textEdit.errors?.['max']">Szövegszerkesztésen elérthető maximális pontszám 30!</span>
+            </div>
+    </div>
+    <div id="inputBox">
+        <label>Táblázatkezelés:</label><br>
+        <input required min="0" max="15" type="number" name="tableManagement" id="tableManagement" placeholder="Elért pontszám megadása" #tableManagement="ngModel" ngModel>
+            <div id="errorDiv" *ngIf="!tableManagement.valid && (tableManagement.dirty || tableManagement.touched)">
+                <span *ngIf="tableManagement.errors?.['required']">Táblázatkezelésen elért pontszám megadása kötelező!</span>
+                <span *ngIf="tableManagement.errors?.['min']">Táblázatkezelésen elérhető minimális pontszám 0!</span>
+                <span *ngIf="tableManagement.errors?.['max']">Táblázatkezelésen elérhető maximális pontszám 15!</span>
+            </div>
+    </div>
+    <div id="inputBox">
+        <label>Adatbázis-kezelés:</label><br>
+        <input required min="0" max="30" type="number" name="dataBaseManagement" id="dataBaseManagement" placeholder="Elért pontszám megadása" #dataBaseManagement="ngModel" ngModel>
+            <div id="errorDiv" *ngIf="!dataBaseManagement.valid && (dataBaseManagement.dirty || dataBaseManagement.touched)">
+                <span *ngIf="dataBaseManagement.errors?.['required']">Adatbázis-kezelésen elért pontszám megadása kötelező!</span>
+                <span *ngIf="dataBaseManagement.errors?.['min']">Adatbázis-kezelésen elérhető minimális pontszám 0!</span>
+                <span *ngIf="dataBaseManagement.errors?.['max']">Adatbázis-kezelésen elérhető maximális pontszám 30!</span>
+            </div>
+    </div>
+    <div id="inputBox">
+        <label>Algoritmizálás:</label><br>
+        <input required min="0" max="45" type="number" name="algoritm" id="algoritm" placeholder="Elért pontszám megadása" #algoritm="ngModel" ngModel>
+            <div id="errorDiv" *ngIf="!algoritm.valid && (algoritm.dirty || algoritm.touched)">
+                <span *ngIf="algoritm.errors?.['required']">Az Algoritmizáláson elért pontszám megadása kötelező!</span>
+                <span *ngIf="algoritm.errors?.['min']">Az Algoritmizáláson elérhető minimális pontszám 0!</span>
+                <span *ngIf="algoritm.errors?.['max']">Az Algoritmizáláson elérhető maximális pontszám 45!</span>
+            </div>
+    </div>
+    <h2>Szóbelin szerzett pontok megadása</h2>
+    <div id="inputBox">
+        <label>Szóbeli:</label><br>
+        <input required min="0" max="30" type="number" name="oralPoint" id="oralPoint" placeholder="Elért pontszám megadása" #oralPoint="ngModel" ngModel>
+            <div id="errorDiv" *ngIf="!oralPoint.valid && (oralPoint.dirty || oralPoint.touched)">
+                <span *ngIf="oralPoint.errors?.['required']">A szóbelin elért pontszám megadása kötelező!</span>
+                <span *ngIf="oralPoint.errors?.['min']">A szóbelin elérhető minimális pontszám 0!</span>
+                <span *ngIf="oralPoint.errors?.['max']">A szóbelin elérhető maximális pontszám 30!</span>
+            </div>
+    </div>
+    <button type="submit" [disabled]="!erettsegiForm.valid">Eredmény mutatása</button>
+    <button type="button" (click)="resetBtn(erettsegiForm)">Törlés</button>
+</form>
+
+<div id="resultDiv">
+    <h2>Eredmény</h2>
+    <div id="resultBox">
+        <label>Elért százalék:</label>
+        <input type="text" name="percent" id="percent" [value]="percent" disabled>
+    </div>
+    <div id="resultBox">
+        <label>Érdemjegy:</label>
+        <input type="text" name="grade" id="grade" [value]="grade" disabled>
+    </div>
+</div>

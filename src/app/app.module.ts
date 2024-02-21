@@ -6,6 +6,10 @@ import { AppComponent } from './app.component';
 import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
 import { TemplateFormComponent } from './template-form/template-form.component';
 
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from './app.routes';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,7 +18,10 @@ import { TemplateFormComponent } from './template-form/template-form.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [
     provideClientHydration()
