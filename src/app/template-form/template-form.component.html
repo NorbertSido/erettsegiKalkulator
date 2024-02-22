@@ -2,8 +2,10 @@
 <p>(Sablon űrlap)</p>
 
 <form #erettsegiForm="ngForm" (ngSubmit)="submitCalc(erettsegiForm)" novalidate>
+    <!-- ========== Írásbeli rész ========== -->
     <h2>Írásbelin szerzett pontok megadása</h2>
-    <div id="inputBox">
+        <!-- ----- Szövegszerkesztés ----- -->
+        <div id="inputBox">
         <label>Szövegszerkesztés, perezentáció, grafika, weblapkészítés:</label><br>
         <input required min="0" max="30" type="number" name="textEdit" id="textEdit" placeholder="Elért pontszám megadása" #textEdit="ngModel" ngModel><br>
             <div id="errorDiv" *ngIf="!textEdit.valid && (textEdit.dirty || textEdit.touched)">
@@ -12,6 +14,7 @@
                 <span *ngIf="textEdit.errors?.['max']">Szövegszerkesztésen elérthető maximális pontszám 30!</span>
             </div>
     </div>
+        <!-- ----- Táblázatkezelés ----- -->
     <div id="inputBox">
         <label>Táblázatkezelés:</label><br>
         <input required min="0" max="15" type="number" name="tableManagement" id="tableManagement" placeholder="Elért pontszám megadása" #tableManagement="ngModel" ngModel>
@@ -21,6 +24,7 @@
                 <span *ngIf="tableManagement.errors?.['max']">Táblázatkezelésen elérhető maximális pontszám 15!</span>
             </div>
     </div>
+    <!-- ----- Adatbázis-kezelés ----- -->
     <div id="inputBox">
         <label>Adatbázis-kezelés:</label><br>
         <input required min="0" max="30" type="number" name="dataBaseManagement" id="dataBaseManagement" placeholder="Elért pontszám megadása" #dataBaseManagement="ngModel" ngModel>
@@ -30,6 +34,7 @@
                 <span *ngIf="dataBaseManagement.errors?.['max']">Adatbázis-kezelésen elérhető maximális pontszám 30!</span>
             </div>
     </div>
+    <!-- ----- Algoritmizálás ----- -->
     <div id="inputBox">
         <label>Algoritmizálás:</label><br>
         <input required min="0" max="45" type="number" name="algoritm" id="algoritm" placeholder="Elért pontszám megadása" #algoritm="ngModel" ngModel>
@@ -39,6 +44,7 @@
                 <span *ngIf="algoritm.errors?.['max']">Az Algoritmizáláson elérhető maximális pontszám 45!</span>
             </div>
     </div>
+     <!-- ========== Szóbeli rész ========== -->
     <h2>Szóbelin szerzett pontok megadása</h2>
     <div id="inputBox">
         <label>Szóbeli:</label><br>
@@ -49,16 +55,21 @@
                 <span *ngIf="oralPoint.errors?.['max']">A szóbelin elérhető maximális pontszám 30!</span>
             </div>
     </div>
+    <!-- ----- Beküldés gomb -----  -->
     <button type="submit" [disabled]="!erettsegiForm.valid">Eredmény mutatása</button>
+    <!-- ----- Beviteli adatok törlése gomb ----- -->
     <button type="button" (click)="resetBtn(erettsegiForm)">Törlés</button>
 </form>
 
+<!-- ========== Eredmények ========== -->
 <div id="resultDiv">
     <h2>Eredmény</h2>
+    <!-- ----- Százalék kimutatás ----- -->
     <div id="resultBox">
         <label>Elért százalék:</label>
         <input type="text" name="percent" id="percent" [value]="percent" disabled>
     </div>
+    <!-- ----- Érdemjegy kimutatás ----- -->
     <div id="resultBox">
         <label>Érdemjegy:</label>
         <input type="text" name="grade" id="grade" [value]="grade" disabled>
